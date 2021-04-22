@@ -27,7 +27,7 @@ Controle: Mouse e teclado;
 Imersão: 3ª pessoa, top-down, monitor;
 Jogadores: 1 jogador;
 Gênero: Aventura RPG;
-Divisão da história do jogo: 4 arcos principais + sidequests;
+Divisão da história do jogo: 4 arcos principais + sidequests.
 
 
 ☆Sinopse:
