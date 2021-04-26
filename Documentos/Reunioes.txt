@@ -18,3 +18,6 @@ Enviamos ideias de visão 2D do jogo, baseados em alguns jogos.
 
 	Dia 22/04
 Dividimos as tarefas para cada integrante e explicamos como faríamos a demo para entrega junto com o proheto integrado.
+
+	Dia 26/04
+Demos continuidade ao projeto de 10 páginas do professor Taero, com o esquema das teclas e nome do antagonista.
