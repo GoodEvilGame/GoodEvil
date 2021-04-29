@@ -13,7 +13,7 @@
 
 ☆Intergrantes:
     Arthur Openheimer;
-    Francisco Silveira;
+    Francisco Silvério;
     Jõao Vitor Godoy;
     Lucas de Souza;
     Pedro Moreira;
