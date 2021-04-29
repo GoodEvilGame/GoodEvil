@@ -21,3 +21,6 @@ Dividimos as tarefas para cada integrante e explicamos como faríamos a demo par
 
 	Dia 26/04
 Demos continuidade ao projeto de 10 páginas do professor Taero, com o esquema das teclas e nome do antagonista.
+
+	Dia 29/04
+Continuamos na produção do projeto de 10 páginas e começamos a desenvolver a demo do jogo e pesquisar efeitos sonoros para a demo.
