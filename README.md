@@ -12,8 +12,8 @@
     Unity 2D.
 
 ☆Intergrantes:
-    Arthur Openheimer
-    Francisco Silveira;
+    Arthur Openheimer;
+    Francisco Silvério;
     Jõao Vitor Godoy;
     Lucas de Souza;
     Pedro Moreira;
