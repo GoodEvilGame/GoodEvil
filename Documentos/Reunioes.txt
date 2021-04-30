@@ -24,3 +24,6 @@ Demos continuidade ao projeto de 10 páginas do professor Taero, com o esquema d
 
 	Dia 29/04
 Continuamos na produção do projeto de 10 páginas e começamos a desenvolver a demo do jogo e pesquisar efeitos sonoros para a demo.
+
+	Dia 30/04
+Começamos a fazer a demo do jogo, com a criação de sprites e iniciamos a programação usando a plataforma Phaser 3.
