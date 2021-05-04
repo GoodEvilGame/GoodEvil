@@ -9,7 +9,7 @@ class BeamUp extends Phaser.GameObjects.Sprite{
     
       this.play("beam-anim");
       scene.physics.world.enableBody(this);
-      this.body.velocity.y = -250;
+      this.body.velocity.y = -900;
       scene.projectiles.add(this);
       this.setScale(3);
       
@@ -33,7 +33,7 @@ class BeamDown extends Phaser.GameObjects.Sprite{
   
     this.play("beam_baixo");
     scene.physics.world.enableBody(this);
-    this.body.velocity.y = +250;
+    this.body.velocity.y = +900;
     scene.projectiles.add(this);
     this.setScale(3);
 
@@ -58,7 +58,7 @@ class BeamLeft extends Phaser.GameObjects.Sprite{
   
     this.play("beam_esq");
     scene.physics.world.enableBody(this);
-    this.body.velocity.x = -250;
+    this.body.velocity.x = -900;
     scene.projectiles.add(this);
     this.setScale(3);
 
@@ -82,7 +82,7 @@ class BeamRight extends Phaser.GameObjects.Sprite{
   
     this.play("beam_dir");
     scene.physics.world.enableBody(this);
-    this.body.velocity.x = +250;
+    this.body.velocity.x = +900;
     scene.projectiles.add(this);
     this.setScale(3);
   
