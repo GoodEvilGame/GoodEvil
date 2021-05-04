@@ -4,16 +4,26 @@ class Scene1 extends Phaser.Scene {
     }    
     
     preload(){
-        this.load.image("background", "assets/images/exemplo-background.png");
-        this.load.image("background2", "assets/images/background2.png");
-        this.load.image("background3", "assets/images/background3.png");
-        this.load.spritesheet("player", "assets/images/pesonagem-exemplo.png",{ 
-        frameWidth: 16,
+        this.load.image("background", "assets/images/cenario/Cenário_corredor.png");
+        this.load.spritesheet("player", "assets/images/damakos/damakos_frente_idle.png",{ 
+        frameWidth: 32,
         frameHeight: 32
     });
-    this.load.spritesheet("beam", "assets/images/teste-de-ataque.png",{ 
-        frameWidth: 16,
-        frameHeight: 16
+    this.load.spritesheet("beam", "assets/images/damakos/ataque.png",{ 
+        frameWidth: 32,
+        frameHeight: 32
+    });
+    this.load.spritesheet("beam_esq", "assets/images/damakos/ataque_esq.png",{ 
+        frameWidth: 32,
+        frameHeight: 32
+    });
+    this.load.spritesheet("beam_dir", "assets/images/damakos/ataque_dir.png",{ 
+        frameWidth: 32,
+        frameHeight: 32
+    });
+    this.load.spritesheet("beam_baixo", "assets/images/damakos/ataque_baixo.png",{ 
+        frameWidth: 32,
+        frameHeight: 32
     });
     }
 
@@ -25,16 +35,10 @@ class Scene1 extends Phaser.Scene {
 
     this.background = this.add.image(0,0,"background");
     this.background.setOrigin(0,0);
-
-    this.background2 = this.add.image(320,0,"background2");
-    this.background2.setOrigin(0,0);
-
-    this.background3 = this.add.image(640,0,"background3");
-    this.background3.setOrigin(0,0);
     
     this.anims.create({
         key: "thrust",
-        frames: this.anims.generateFrameNumbers("player"),
+        frames: this.anims.generateFrameNames("player",{start: 1, end:2}),
         frameRate: 5,
         repeat: -1
     })
@@ -44,7 +48,24 @@ class Scene1 extends Phaser.Scene {
         frameRate: 5,
         repeat: -1
     })
-    
+    this.anims.create({
+        key: "beam_baixo",
+        frames: this.anims.generateFrameNumbers("beam_baixo"),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "beam_esq",
+        frames: this.anims.generateFrameNumbers("beam_esq"),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "beam_dir",
+        frames: this.anims.generateFrameNumbers("beam_dir"),
+        frameRate: 5,
+        repeat: -1
+    })
 
    }
 }

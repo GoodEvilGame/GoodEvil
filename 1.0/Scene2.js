@@ -1,3 +1,5 @@
+var mana = 5;
+var tempo = 0;
 class Scene2 extends Phaser.Scene {
     constructor(){
         super("playGame");
@@ -7,35 +9,57 @@ class Scene2 extends Phaser.Scene {
     
     this.background = this.add.image(0,0,"background");
     this.background.setOrigin(0,0);
-
-    this.background2 = this.add.image(320,0,"background2");
-    this.background2.setOrigin(0,0);
     
-    this.background3 = this.add.image(640,0,"background3");
-    this.background3.setOrigin(0,0);
-
     this.player = this.physics.add.sprite(config.width / 2 - 8, config.height - 64 , "player");
     this.player.play("thrust");
     this.keyObjw = this.input.keyboard.addKey('W');
     this.keyObjs = this.input.keyboard.addKey('S');
     this.keyObjd = this.input.keyboard.addKey('D');
     this.keyObja = this.input.keyboard.addKey('A');
-    this.keyObji = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I) 
+    this.cursorKeys = this.input.keyboard.createCursorKeys(); 
     this.player.setCollideWorldBounds(true);
+    this.player.setScale(5);
 
     this.projectiles = this.add.group();
     }
 
       update(){
         this.movePlayerManager();
-
-        if (Phaser.Input.Keyboard.JustDown(this.keyObji)) {
-            this.attack1();
+        if (mana<5){
+              tempo = tempo + 1;
+              if (tempo>=90){
+                  tempo=0;
+                  mana=mana+1;
+              }
         }
+        if (mana>0){
+        if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.up)) {
+            this.attackUp();
+            mana=mana-1;
+        }
+        else if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.down)) {
+            this.attackDown();
+            mana=mana-1;
+        }
+        else if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.left)) {
+            this.attackLeft();
+            mana=mana-1;
+        }
+        else if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.right)) {
+            this.attackRight();
+            mana=mana-1;
+        }
+    }
 
         for(var i = 0; i < this.projectiles.getChildren().lenght; i++){
-            var beam = this.projectiles.getChildren()[i];
-            beam.update();
+            var beamUP = this.projectiles.getChildren()[i];
+            beamUP.update();
+            var beamDown = this.projectiles.getChildren()[i];
+            beamDown.update();
+            var beamLeft = this.projectiles.getChildren()[i];
+            beamLeft.update();
+            var BeamRight = this.projectiles.getChildren()[i];
+            BeamRight.update();
         }
     }
 
@@ -61,7 +85,16 @@ class Scene2 extends Phaser.Scene {
          }
 
     }
-        attack1(){
-            var beam = new Beam(this);
+        attackUp(){
+            var beamUp = new BeamUp(this);
+        }
+        attackDown(){
+            var beamDown = new BeamDown(this);
+        }
+        attackLeft(){
+            var beamLeft = new BeamLeft(this);
+        }
+        attackRight(){
+            var beamRight = new BeamRight(this);
         }
 }
