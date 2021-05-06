@@ -23,7 +23,19 @@ class Scene2 extends Phaser.Scene {
 
     this.hitSound = this.sound.add("hit");
     this.shootSound = this.sound.add("shoot");
+    this.shootSound = this.sound.add("shoot");
+    this.music = this.sound.add("music");
 
+    var musicConfig = {
+        mute: false,
+        volume: 0.4,
+        rate: 0.5,
+        detune: 0,
+        seek: 0,
+        loop: true,
+        delay: 0
+    }
+    this.music.play(musicConfig);
 
     this.projectiles = this.add.group();
 
