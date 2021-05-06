@@ -21,6 +21,9 @@ class Scene2 extends Phaser.Scene {
     this.player.setCollideWorldBounds(true);
     this.player.setScale(5);
 
+    //Instanciando not
+    var not = new Inimigo(this);
+
     this.hitSound = this.sound.add("hit");
     this.shootSound = this.sound.add("shoot");
     this.shootSound = this.sound.add("shoot");
@@ -180,6 +183,7 @@ class Scene2 extends Phaser.Scene {
          }
 
     }
+        //Instancia skill damakos
         attackUp(){
             var beamUp = new BeamUp(this);
         }
