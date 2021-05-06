@@ -5,7 +5,37 @@ class Scene1 extends Phaser.Scene {
     
     preload(){
         this.load.image("background", "assets/images/cenario/Cenário_corredor.png");
-        this.load.spritesheet("player", "assets/images/damakos/damakos_frente_idle.png",{ 
+        this.load.image("background", "assets/images/cenario/Cenário_corredor.png");
+        this.load.spritesheet("player-p-cima", "assets/images/damakos/damakos_costas_idle.png",{ 
+            frameWidth: 32,
+            frameHeight: 32
+        });
+    this.load.spritesheet("player-a-cima", "assets/images/damakos/damakos_costas.png",{ 
+        frameWidth: 34,
+        frameHeight: 32
+    });
+
+    this.load.spritesheet("player-a-baixo", "assets/images/damakos/damakos_frente.png",{ 
+        frameWidth: 33.6,
+        frameHeight: 32
+    });
+    this.load.spritesheet("player-p-baixo", "assets/images/damakos/damakos_frente_idle.png",{ 
+        frameWidth: 32,
+        frameHeight: 32
+    });
+    this.load.spritesheet("player-a-direita", "assets/images/damakos/damakos_andando_dir.png",{ 
+        frameWidth: 28.3333,
+        frameHeight: 32
+    });
+    this.load.spritesheet("player-p-direita", "assets/images/damakos/damakos_idle_dir.png",{ 
+        frameWidth: 32,
+        frameHeight: 32
+    });
+    this.load.spritesheet("player-a-esquerda", "assets/images/damakos/damakos_andando_esq.png",{ 
+        frameWidth: 28.3,
+        frameHeight: 32
+    });
+    this.load.spritesheet("player-p-esquerda", "assets/images/damakos/damakos_idle_esq.png",{ 
         frameWidth: 32,
         frameHeight: 32
     });
@@ -39,11 +69,54 @@ class Scene1 extends Phaser.Scene {
     this.background.setOrigin(0,0);
     
     this.anims.create({
-        key: "thrust",
-        frames: this.anims.generateFrameNames("player",{start: 1, end:2}),
+        key: "player-p-cima",
+        frames: this.anims.generateFrameNames("player-p-cima",{start: 0, end:1}),
         frameRate: 5,
         repeat: -1
     })
+    this.anims.create({
+        key: "player-a-cima",
+        frames: this.anims.generateFrameNames("player-a-cima",{start: 0, end:2}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "player-a-baixo",
+        frames: this.anims.generateFrameNames("player-a-baixo",{start: 0, end:2}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "player-p-baixo",
+        frames: this.anims.generateFrameNames("player-p-baixo",{start: 0, end:1}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "player-a-direita",
+        frames: this.anims.generateFrameNames("player-a-direita",{start: 0, end:2}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "player-p-direita",
+        frames: this.anims.generateFrameNames("player-p-direita",{start: 0, end:1}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "player-a-esquerda",
+        frames: this.anims.generateFrameNames("player-a-esquerda",{start: 0, end:2}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "player-p-esquerda",
+        frames: this.anims.generateFrameNames("player-p-esquerda",{start: 0, end:1}),
+        frameRate: 5,
+        repeat: -1
+    })
+
     this.anims.create({
         key: "beam-anim",
         frames: this.anims.generateFrameNumbers("beam"),
