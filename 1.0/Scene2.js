@@ -21,6 +21,10 @@ class Scene2 extends Phaser.Scene {
     this.player.setCollideWorldBounds(true);
     this.player.setScale(5);
 
+    this.hitSound = this.sound.add("hit");
+    this.shootSound = this.sound.add("shoot");
+
+
     this.projectiles = this.add.group();
 
     var graphics = this.add.graphics();
@@ -54,21 +58,25 @@ class Scene2 extends Phaser.Scene {
             this.attackUp();
             mana=mana-1;
             this.manaUpdate();
+            this.shootSound.play();
         }
         else if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.down)) {
             this.attackDown();
             mana=mana-1;
             this.manaUpdate();
+            this.shootSound.play();
         }
         else if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.left)) {
             this.attackLeft();
             mana=mana-1;
             this.manaUpdate();
+            this.shootSound.play();
         }
         else if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.right)) {
             this.attackRight();
             mana=mana-1;
-            this.manaUpdate();    
+            this.manaUpdate();   
+            this.shootSound.play(); 
         }
     }
 
@@ -176,4 +184,5 @@ class Scene2 extends Phaser.Scene {
         manaUpdate(){
             this.scoreLabelMana.text = "MANA: " + mana;
         }
+
 }

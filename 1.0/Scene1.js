@@ -6,6 +6,10 @@ class Scene1 extends Phaser.Scene {
     preload(){
         this.load.image("background", "assets/images/cenario/Cenário_corredor.png");
         this.load.image("background", "assets/images/cenario/Cenário_corredor.png");
+        this.load.audio("shoot", "assets/SFX/shoot.mp3");
+        this.load.audio("bossfight", "assets/SFX/bossfight.mp3");
+        this.load.audio("hit", "assets/SFX/hit.mp3");
+        this.load.audio("menu_song", "assets/SFX/menu_song.mp3");
         this.load.spritesheet("player-p-cima", "assets/images/damakos/damakos_costas_idle.png",{ 
             frameWidth: 32,
             frameHeight: 32
