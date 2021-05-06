@@ -21,6 +21,21 @@ class Scene2 extends Phaser.Scene {
     this.player.setScale(5);
 
     this.projectiles = this.add.group();
+
+    var graphics = this.add.graphics();
+        graphics.fillStyle(0x000000, 1);
+        graphics.beginPath();
+        graphics.moveTo(0, 0);
+        graphics.lineTo(config.width, 0);
+        graphics.lineTo(config.width, 40);
+        graphics.lineTo(0, 40);
+        graphics.lineTo(0, 0);
+        graphics.closePath();
+        graphics.fillPath();
+
+        this.vida = 100;
+        this.scoreLabelMana = this.add.bitmapText(10, 5, "pixelFont", "MANA: "+ mana , 32);
+        this.scoreLabelVida = this.add.bitmapText(300, 5, "pixelFont", "VIDA: "+ this.vida , 32);
     }
 
       update(){
@@ -30,24 +45,29 @@ class Scene2 extends Phaser.Scene {
               if (tempo>=90){
                   tempo=0;
                   mana=mana+1;
+                  this.manaUpdate();
               }
         }
         if (mana>0){
         if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.up)) {
             this.attackUp();
             mana=mana-1;
+            this.manaUpdate();
         }
         else if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.down)) {
             this.attackDown();
             mana=mana-1;
+            this.manaUpdate();
         }
         else if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.left)) {
             this.attackLeft();
             mana=mana-1;
+            this.manaUpdate();
         }
         else if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.right)) {
             this.attackRight();
             mana=mana-1;
+            this.manaUpdate();    
         }
     }
 
@@ -92,9 +112,13 @@ class Scene2 extends Phaser.Scene {
             var beamDown = new BeamDown(this);
         }
         attackLeft(){
-            var beamLeft = new BeamLeft(this);
+            var beamLeft = new BeamLeft(this);   
         }
         attackRight(){
-            var beamRight = new BeamRight(this);
+            var beamRight = new BeamRight(this);   
+        }
+
+        manaUpdate(){
+            this.scoreLabelMana.text = "MANA: " + mana;
         }
 }
