@@ -73,6 +73,7 @@ class Scene2 extends Phaser.Scene {
               }
         }
 
+
         for(var i = 0; i < this.projectiles.getChildren().lenght; i++){
             var beamUP = this.projectiles.getChildren()[i];
             beamUP.update();
@@ -165,7 +166,7 @@ class Scene2 extends Phaser.Scene {
          }
 
     }
-        //Instancia skill damakos
+    //Instancia skill damakos
     shootBeam(){
         if (mana > 0){
             if(direcao == 1){

@@ -30,3 +30,7 @@ Começamos a fazer a demo do jogo, com a criação de sprites e iniciamos a prog
 
 	Dia 03/05
 Continuamos desenvolvendo as funções do personagem dentro da demo, também demos ideia sobre como pode ser o HUD.
+
+	Dia 06/05
+Desenvolvemos as funções de ataque com o efeito de ataque, criamos mais sprites de diálogo entre os bonecos, e desenvolvemos o rotei-
+ro do diálogo entre o protagonista e o vilão.

@@ -40,5 +40,7 @@ O rumo da história se dá pelas escolhas do jogador;
 Sistema de reputação e karma com os NPCs dependendo das escolhas de diálogo do player com eles;
 Sistema de treinamento para aumento de status e aprendizado de novas habilidades.
 
+☆Para rodar o projeto é necessário um localhost, como o visual StudioLive ou Xampp
+
 
 
