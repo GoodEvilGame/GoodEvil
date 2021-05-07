@@ -12,7 +12,7 @@ class Scene2 extends Phaser.Scene {
     this.background.setOrigin(0,0);
     
     this.player = this.physics.add.sprite(config.width / 2 - 8, config.height - 64 , "player");
-    this.player.play("player-a-baixo");
+    this.player.play("player-p-baixo");
     this.teclaW = this.input.keyboard.addKey('W');
     this.teclaS = this.input.keyboard.addKey('S');
     this.teclaD = this.input.keyboard.addKey('D');
