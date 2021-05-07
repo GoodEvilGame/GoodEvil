@@ -25,8 +25,6 @@ class Scene2 extends Phaser.Scene {
     var not = new Inimigo(this);
 
     //Instanciando sons e música de fundo
-    this.hitSound = this.sound.add("hit");
-    this.shootSound = this.sound.add("shoot");
     this.shootSound = this.sound.add("shoot");
     this.music = this.sound.add("music");
 
