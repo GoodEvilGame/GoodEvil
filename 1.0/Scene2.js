@@ -1,6 +1,7 @@
 var mana = 5;
 var tempo = 0;
 var posicao = 0;
+var direcao = 0;
 class Scene2 extends Phaser.Scene {
     constructor(){
         super("playGame");
@@ -10,9 +11,10 @@ class Scene2 extends Phaser.Scene {
     
     this.background = this.add.image(0,0,"background");
     this.background.setOrigin(0,0);
+    this.background.setInteractive();
     
     this.player = this.physics.add.sprite(config.width / 2 - 8, config.height - 64 , "player");
-    this.player.play("player-a-baixo");
+    this.player.play("player-p-baixo");
     this.teclaW = this.input.keyboard.addKey('W');
     this.teclaS = this.input.keyboard.addKey('S');
     this.teclaD = this.input.keyboard.addKey('D');
@@ -20,6 +22,27 @@ class Scene2 extends Phaser.Scene {
     this.cursorKeys = this.input.keyboard.createCursorKeys(); 
     this.player.setCollideWorldBounds(true);
     this.player.setScale(5);
+
+    this.input.on("gameobjectdown", this.shootBeam, this);
+
+    //Instanciando not
+    var not = new Inimigo(this);
+
+    this.hitSound = this.sound.add("hit");
+    this.shootSound = this.sound.add("shoot");
+    this.shootSound = this.sound.add("shoot");
+    this.music = this.sound.add("music");
+
+    var musicConfig = {
+        mute: false,
+        volume: 0.4,
+        rate: 0.5,
+        detune: 0,
+        seek: 0,
+        loop: true,
+        delay: 0
+    }
+    this.music.play(musicConfig);
 
     this.projectiles = this.add.group();
 
@@ -39,38 +62,16 @@ class Scene2 extends Phaser.Scene {
         this.scoreLabelVida = this.add.bitmapText(300, 5, "pixelFont", "VIDA: "+ this.vida , 32);
     }
 
-      update(){
+    update(){
         this.movePlayerManager();
         if (mana<5){
               tempo = tempo + 1;
               if (tempo>=90){
                   tempo=0;
                   mana=mana+1;
-                  this.manaUpdate();
+                  this.updateHud();
               }
         }
-        if (mana>0){
-        if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.up)) {
-            this.attackUp();
-            mana=mana-1;
-            this.manaUpdate();
-        }
-        else if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.down)) {
-            this.attackDown();
-            mana=mana-1;
-            this.manaUpdate();
-        }
-        else if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.left)) {
-            this.attackLeft();
-            mana=mana-1;
-            this.manaUpdate();
-        }
-        else if (Phaser.Input.Keyboard.JustDown(this.cursorKeys.right)) {
-            this.attackRight();
-            mana=mana-1;
-            this.manaUpdate();    
-        }
-    }
 
         for(var i = 0; i < this.projectiles.getChildren().lenght; i++){
             var beamUP = this.projectiles.getChildren()[i];
@@ -97,6 +98,7 @@ class Scene2 extends Phaser.Scene {
             if(posicao!=4){
                 posicao = 4;
                 this.player.play("player-a-esquerda");
+                direcao = 1;
             }
         }
         }
@@ -110,6 +112,7 @@ class Scene2 extends Phaser.Scene {
             if(posicao!=3){
                 posicao = 3;
                 this.player.play("player-a-direita");
+                direcao = 2;
             }
         }
         }
@@ -124,6 +127,7 @@ class Scene2 extends Phaser.Scene {
             if(posicao!=2){
                 posicao = 2;
                 this.player.play("player-a-baixo");
+                direcao = 3;
             }
             }
         }
@@ -137,6 +141,7 @@ class Scene2 extends Phaser.Scene {
             if(posicao!=1){
                 posicao = 1;
                 this.player.play("player-a-cima");
+                direcao = 4;
             }
         }
          }
@@ -160,20 +165,35 @@ class Scene2 extends Phaser.Scene {
          }
 
     }
-        attackUp(){
-            var beamUp = new BeamUp(this);
-        }
-        attackDown(){
-            var beamDown = new BeamDown(this);
-        }
-        attackLeft(){
-            var beamLeft = new BeamLeft(this);   
-        }
-        attackRight(){
-            var beamRight = new BeamRight(this);   
+        //Instancia skill damakos
+    shootBeam(){
+        if (mana > 0){
+            if(direcao == 1){
+                var beam = new BeamLeft(this);
+                mana -= 1;
+                this.shootSound.play();
+                }
+                else if(direcao == 2 ){
+                    var beam = new BeamRight(this);
+                    mana -= 1;
+                    this.shootSound.play();
+                }
+                else if(direcao == 3 ){
+                    var beam = new BeamDown(this);
+                    mana -= 1;
+                    this.shootSound.play();
+                }
+                else if(direcao == 4 ){
+                    var beam = new BeamUp(this);
+                    mana -= 1;
+                    this.shootSound.play();
+                }
+                this.updateHud();
+            }
         }
 
-        manaUpdate(){
+        updateHud(){
             this.scoreLabelMana.text = "MANA: " + mana;
         }
+
 }
