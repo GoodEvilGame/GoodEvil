@@ -2,9 +2,12 @@ var mana = 5;
 var tempo = 0;
 var posicao = 0;
 var direcao = 0;
+var alive = true;
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("playGame");
+    this.not; 
+    this.tempo2;
   }
 
   create() {
@@ -29,8 +32,7 @@ class Scene2 extends Phaser.Scene {
     this.input.on("gameobjectdown", this.shootBeam, this);
 
     //Instanciando not
-    var not = new Inimigo(this);
-
+    this.not = new Inimigo(this);
     //Instanciando sons e música de fundo
     this.shootSound = this.sound.add("shoot");
     this.music = this.sound.add("music");
@@ -75,34 +77,57 @@ class Scene2 extends Phaser.Scene {
       "VIDA: " + this.vida,
       32
     );
+
+    
+    //this.player.body.setSize(this.player.width, this.player.height, true);
+    //this.not.body.setSize(this.not.width, this.not.height, true);
+    this.physics.add.collider(this.projectiles, this.not, function(projectile, not){
+      projectile.destroy();
+      not.damage();
+    });
+    this.physics.add.collider(this.player, this.projectiles, function(player, projectile){
+      alive = false;
+    });
+
   }
 
+  alive(){
+    this.not.playerAlive = alive;
+    this.not.update(this.player);
+    this.player.destroy();
+  }
   update() {
-    this.movePlayerManager();
-    if (mana < 5) {
-      tempo = tempo + 1;
-      if (tempo >= 90) {
-        tempo = 0;
-        mana = mana + 1;
-        this.updateHud();
+    if(alive == true){
+      this.not.update(this.player);
+      this.movePlayerManager();
+      if (mana < 5) {
+        tempo = tempo + 1;
+        if (tempo >= 90) {
+          tempo = 0;
+          mana = mana + 1;
+          this.updateHud();
+        }
+      }
+
+      for (var i = 0; i < this.projectiles.getChildren().lenght; i++) {
+        var beamUP = this.projectiles.getChildren()[i];
+        beamUP.update();
+        var beamDown = this.projectiles.getChildren()[i];
+        beamDown.update();
+        var beamLeft = this.projectiles.getChildren()[i];
+        beamLeft.update();
+        var BeamRight = this.projectiles.getChildren()[i];
+        BeamRight.update();
       }
     }
-
-    for (var i = 0; i < this.projectiles.getChildren().lenght; i++) {
-      var beamUP = this.projectiles.getChildren()[i];
-      beamUP.update();
-      var beamDown = this.projectiles.getChildren()[i];
-      beamDown.update();
-      var beamLeft = this.projectiles.getChildren()[i];
-      beamLeft.update();
-      var BeamRight = this.projectiles.getChildren()[i];
-      BeamRight.update();
+    else{
+      this.alive();
     }
   }
 
   movePlayerManager() {
     this.player.setVelocity(0);
-
+    
     if (this.teclaA.isDown) {
       if (
         this.player.x > 830 &&
@@ -191,6 +216,7 @@ class Scene2 extends Phaser.Scene {
   //Instancia skill damakos
   shootBeam() {
     if (mana > 0) {
+      console.log("entrou nos tirp")
       if (direcao == 1) {
         var beam = new BeamLeft(this);
         mana -= 1;

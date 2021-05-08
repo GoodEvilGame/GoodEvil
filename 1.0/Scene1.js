@@ -83,8 +83,8 @@ class Scene1 extends Phaser.Scene {
             frameHeight: 32
         });
         this.load.spritesheet("not-a-dir", "assets/images/not/Not_direita.png", {
-            frameWidth: 32,
-            frameHeight: 32
+            frameWidth: 14,
+            frameHeight: 31
         });
 
         //Fonte de letras utilizada
@@ -181,25 +181,25 @@ class Scene1 extends Phaser.Scene {
     //Animações not
     this.anims.create({
         key: "not-a-baixo",
-        frames: this.anims.generateFrameNumbers("not-a-baixo"),
+        frames: this.anims.generateFrameNumbers("not-a-baixo", {start: 0, end:2}),
         frameRate: 5,
         repeat: -1
     })
     this.anims.create({
         key: "not-a-cima",
-        frames: this.anims.generateFrameNumbers("not-a-cima"),
+        frames: this.anims.generateFrameNumbers("not-a-cima",{start: 0, end:2}),
         frameRate: 5,
         repeat: -1
     })
     this.anims.create({
         key: "not-a-esq",
-        frames: this.anims.generateFrameNumbers("not-a-esq"),
+        frames: this.anims.generateFrameNumbers("not-a-esq", {start: 0, end:2}),
         frameRate: 5,
         repeat: -1
     })
     this.anims.create({
         key: "not-a-dir",
-        frames: this.anims.generateFrameNumbers("not-a-dir"),
+        frames: this.anims.generateFrameNumbers("not-a-dir", {start: 0, end:2}),
         frameRate: 5,
         repeat: -1
     })
