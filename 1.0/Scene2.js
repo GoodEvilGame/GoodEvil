@@ -92,10 +92,9 @@ class Scene2 extends Phaser.Scene {
   }
 
   alive(){
-    this.not.playerAlive = alive;
-    this.not.update(this.player);
     this.player.destroy();
   }
+  
   update() {
     if(alive == true){
       this.not.update(this.player);

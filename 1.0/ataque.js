@@ -88,7 +88,7 @@ class BeamRight extends Phaser.GameObjects.Sprite{
   
   }
   update(){ 
-  if(this.x < config.width){
+  if(this.x > config.width){
     this.destroy();
   }
   }    
