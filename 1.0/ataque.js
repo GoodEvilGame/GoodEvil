@@ -2,7 +2,7 @@ class BeamUp extends Phaser.GameObjects.Sprite{
     constructor(scene){
   
   
-      var x = scene.player.x;
+      var x = scene.player.x ;
       var y = scene.player.y - 16;
       super(scene, x, y, "beam");
       scene.add.existing(this);
@@ -75,7 +75,7 @@ class BeamRight extends Phaser.GameObjects.Sprite{
   constructor(scene){
 
 
-    var x = scene.player.x;
+    var x = scene.player.x + 100;
     var y = scene.player.y - 16;
     super(scene, x, y, "beam");
     scene.add.existing(this);
