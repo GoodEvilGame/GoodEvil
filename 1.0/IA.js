@@ -99,7 +99,7 @@ class Inimigo extends Phaser.GameObjects.Sprite{
     damage(){
         this.vida -= 1;
         if(this.vida == 0){
-            this.destroy();
+            this.play("not_morrendo");
         }
     }
 
