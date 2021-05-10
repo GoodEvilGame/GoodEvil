@@ -123,8 +123,8 @@ class Scene3 extends Phaser.Scene {
         else if (this.conversas==9){
             this.notfalando= this.add.image(120,119,"not_rindo");
             this.notfalando.setScale(5);
-            this.fala.text = "Hahaha, entao se eh assim que voce quer, mas saiba, seus poderes de fogo ";
-            this.fala2.text = "nao chegam nem perto dos meus, e devo dizer que vou gostar de te";
+            this.fala.text = "Hahaha, entao se eh assim que voce quer, mas saiba, seus poderes de";
+            this.fala2.text = "fogo nao chegam nem perto dos meus, e devo dizer que vou gostar de te";
             this.fala3 = this.add.bitmapText( 240, 192, "pixelFont", "dar uma surra.", 64);
             
         }
