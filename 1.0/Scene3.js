@@ -76,52 +76,52 @@ class Scene3 extends Phaser.Scene {
             this.fala = this.add.bitmapText( 240, 64, "pixelFont", "é", 64);
             this.fala2 = this.add.bitmapText( 240, 128, "pixelFont", "é", 64);
             this.fala.text =  "O que eh isso?";
-            this.notfalando = this.add.image(120,119,"not_falando");
+            this.notfalando = this.add.sprite(120,119,"fala");
+            this.notfalando.play("not_falando");
             this.notfalando.setScale(5);
 
         }
         else if (this.conversas==2){
-
+            this.notfalando.play("damakos_falando");
             this.fala.text = "Desculpe, eu estava distraido!";
-            this.notfalando.destroy();
+            
         }
         else if (this.conversas==3){
-
+            this.notfalando.play("not_falando");
             this.fala.text = "Voce eh um tiefling?";
-            this.notfalando = this.add.image(120,119,"not_falando");
             this.notfalando.setScale(5);
         }
         else if (this.conversas==4){
-            this.notfalando.destroy();
+            this.notfalando.play("damakos_falando");
             this.fala.text = "...";
         }
         else if (this.conversas==5){
-            this.notfalando= this.add.image(120,119,"not_falando")
+            this.notfalando.play("not_falando");
             this.fala.text = "O que alguem da sua raca faz nessa escola? Nao posso estudar no mesmo";
             this.fala2.text = "lugar que alguem repugnante como voce. E ja que eu cheguei primeiro..."; 
             this.notfalando.setScale(5);
         }
         else if (this.conversas==6){
-            this.notfalando.destroy();
+            this.notfalando.play("damakos_falando");
             this.fala.text = "Eu nao pretendo ir a lugar algum. E nao vou deixar que voce me ofenda ";
             this.fala2.text = "desse jeito";
             
         }
         else if (this.conversas==7){
-            this.notfalando= this.add.image(120,119,"not_rindo");
+            this.notfalando.play("not_rindo");
             this.notfalando.setScale(5);
             this.fala.text = "E o que voce vai fazer para me impedir, Lutar?";
             this.fala2.text = "";
             
         }
         else if (this.conversas==8){
-            this.notfalando.destroy();
+            this.notfalando.play("damakos_falando");
             this.fala.text = "...";
             this.fala2.text = "";
             
         }
         else if (this.conversas==9){
-            this.notfalando= this.add.image(120,119,"not_rindo");
+            this.notfalando.play("not_rindo");
             this.notfalando.setScale(5);
             this.fala.text = "Hahaha, entao se eh assim que voce quer, mas saiba, seus poderes de";
             this.fala2.text = "fogo nao chegam nem perto dos meus, e devo dizer que vou gostar de te";

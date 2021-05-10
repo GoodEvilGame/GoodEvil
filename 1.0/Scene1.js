@@ -6,13 +6,29 @@ class Scene1 extends Phaser.Scene {
     preload(){
         this.load.image("background", "assets/images/cenario/Cenário_corredor.png");
         this.load.image("background_luta", "assets/images/cenario/arena.png");
-        this.load.image("not_rindo", "assets/images/not/Not_perfil_1.png");
-        this.load.image("not_falando", "assets/images/not/Not_perfil_2.png");
         
         this.load.audio("shoot", "assets/SFX/shoot.mp3");
         this.load.audio("bossfight", "assets/SFX/bossfight.mp3");
         this.load.audio("hit", "assets/SFX/hit.mp3");
         this.load.audio("music", "assets/SFX/stage1_music.mp3");
+
+
+        this.load.spritesheet("not_rindo", "assets/images/not/Not_perfil_1.png",{ 
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet("not_falando", "assets/images/not/Not_perfil_2.png",{ 
+            frameWidth: 32,
+            frameHeight: 32
+        });
+        this.load.spritesheet("not_morrendo", "assets/images/not/Not_morrendo.png",{ 
+            frameWidth: 30,
+            frameHeight: 32
+        });
+        this.load.spritesheet("damakos_falando", "assets/images/damakos/damakos_falando.png",{ 
+            frameWidth: 30,
+            frameHeight: 32
+        });
 
         //Sprites do damakos
         //"...-a-..." = andando
@@ -306,5 +322,31 @@ class Scene1 extends Phaser.Scene {
         frameRate: 5,
         repeat: -1
     })
+
+    this.anims.create({
+        key: "not_falando",
+        frames: this.anims.generateFrameNumbers("not_falando", {start: 0, end:0}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "not_rindo",
+        frames: this.anims.generateFrameNumbers("not_rindo", {start: 0, end:0}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "damakos_falando",
+        frames: this.anims.generateFrameNumbers("damakos_falando", {start: 0, end:0}),
+        frameRate: 2,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "not_morrendo",
+        frames: this.anims.generateFrameNumbers("not_morrendo", {start: 0, end:2}),
+        frameRate: 1,
+        repeat: 0
+    })
+
    }
 }
