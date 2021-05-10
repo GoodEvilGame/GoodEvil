@@ -131,7 +131,7 @@ class BeamNot extends Phaser.GameObjects.Sprite{
         scene.add.existing(this);
         this.play("beam_esq_inimigo");
         scene.physics.world.enableBody(this);
-        this.body.velocity.x = -900;
+        this.body.velocity.x = -500;
         scene.projectilesI.add(this);
         this.setScale(3);
       }
