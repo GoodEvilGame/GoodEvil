@@ -10,7 +10,8 @@ class Scene1 extends Phaser.Scene {
         this.load.audio("shoot", "assets/SFX/shoot.mp3");
         this.load.audio("bossfight", "assets/SFX/bossfight.mp3");
         this.load.audio("hit", "assets/SFX/hit.mp3");
-        this.load.audio("music", "assets/SFX/stage1_music.mp3");
+        this.load.audio("arena", "assets/SFX/arena_music.mp3");
+        this.load.audio("music", "assets/SFX/hallway.mp3");
 
 
         this.load.spritesheet("not_rindo", "assets/images/not/Not_perfil_1.png",{ 

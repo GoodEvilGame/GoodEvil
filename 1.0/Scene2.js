@@ -22,19 +22,21 @@ class Scene2 extends Phaser.Scene {
       
       //Instanciando sons e música de fundo
 
-      this.music = this.sound.add("music");
+      var hallway = this.sound.add("music");
 
       var musicConfig = {
           mute: false,
           volume: 0.4,
-          rate: 0.5,
+          rate: 1,
           detune: 0,
           seek: 0,
           loop: true,
           delay: 0
       }
-      this.music.play(musicConfig);
-    this.direcao
+      hallway.play(musicConfig);
+    
+    
+      this.direcao
      
   }
       
