@@ -6,33 +6,22 @@ class Inimigo extends Phaser.GameObjects.Sprite{
         scene.add.existing(this);
         this.speed;
         this.direction = 1;
-        this.vida = 2;
+        this.vida = 5;
         this.tempo2 = 0;
         this.manaNot = 5;
         this.beam;  
         scene.physics.world.enableBody(this);
         this.body.setCollideWorldBounds(true);
         this.setScale(5);
-        this.create();
-    }
 
-    create(){
-        console.log(this)
     }
 
     
     findPlayer(player){
         //Verifica se está no mesmo range x e depois se esta em cima ou embaixo
-            if(this.x > (player.x - player.body.width) && (this.x - this.body.width) < player.x ){
-                if(this.y < player.y){
-                    console.log("ataque baixo");
-                }
-                else{
-                    console.log("ataque cima");
-                }
-            }
+
             //Se distancia do player X
-            else if(this.x >= player.x+720){
+            if(this.x >= player.x+720){
                 this.speedX = -200;
             }
             else if(this.x > player.x + 700 && this.x < player.x + 720){
@@ -44,12 +33,14 @@ class Inimigo extends Phaser.GameObjects.Sprite{
             //Verifica se está no mesmo range y e depois se esta na esquerda ou direita
             if(this.y > (player.y - player.body.height) && (this.y - this.body.height) < player.y) {
                 if(this.x < player.x){
-                    console.log("ataque direita");
+                    
                 }
                 else{
                     if(this.manaNot > 0){
                         this.beam = new BeamNot(this.scene, this);
                         this.manaNot--;
+                        this.shootSound = this.scene.sound.add("shoot");
+                        this.shootSound.play();
                     }
                 }
             }
@@ -67,14 +58,14 @@ class Inimigo extends Phaser.GameObjects.Sprite{
             if(this.direction != 0){
                     this.direction = 0;
                     this.play("not-a-dir");
-                    console.log("dir")
+                   
             }
         }
         else if(this.speedX < 0){
             if(this.direction != 1){
                     this.direction = 1;
                     this.play("not-a-esq");
-                    console.log("dir")
+                   
             }
         }
 
@@ -83,14 +74,14 @@ class Inimigo extends Phaser.GameObjects.Sprite{
                 if(this.direction != 2){
                     this.direction = 2;
                     this.play("not-a-baixo");
-                    console.log("c")
+                   
                 }
             }
             else if(this.speedY < 0){
                 if(this.direction != 3){
                     this.direction = 3;
                     this.play("not-a-cima");
-                    console.log("b")
+                   
                 }
             }
         }
@@ -98,8 +89,11 @@ class Inimigo extends Phaser.GameObjects.Sprite{
 
     damage(){
         this.vida -= 1;
+        this.scene.hitDamakos();
         if(this.vida == 0){
             this.play("not_morrendo");
+            this.win = this.scene.add.bitmapText( config.width/2-300,config.height/2-100, "pixelFont", "win!", 500);
+            this.aperte_f5 = this.scene.add.bitmapText( config.width/2-100,config.height/2+250, "pixelFont", "aperte f5", 100);
         }
     }
 

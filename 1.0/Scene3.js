@@ -46,7 +46,7 @@ class Scene3 extends Phaser.Scene {
 
     }
        conversa(){
-           if(this.player.y>460&&this.player.y<588 && this.player.x>880  && this.player.x<1008){
+        if(this.player.y>400&&this.player.y<700 && this.player.x>840  && this.player.x<1100){
            this.conversas++;
           
            }

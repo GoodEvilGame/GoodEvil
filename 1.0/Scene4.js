@@ -1,4 +1,5 @@
 var vida = 3
+var vd = 5;
 class Scene4 extends Phaser.Scene {
   constructor() {
     super("Luta");
@@ -7,10 +8,13 @@ class Scene4 extends Phaser.Scene {
   }
 
   create() {
-    this.direcao;
+    this.direcao = 3;
     this.posicao;
     this.tempo = 0;
     this.mana = 5;
+    this.reputacao = 10;
+    this.naoestouraorelha=0;
+    
   
     this.background = this.add.image(0, 0, "background_luta");
     this.background.setOrigin(0, 0);
@@ -38,7 +42,7 @@ class Scene4 extends Phaser.Scene {
     //Instanciando sons e música de fundo
     this.shootSound = this.sound.add("shoot");
     this.hitSound = this.sound.add("hit");
-    this.music = this.sound.add("music");
+    this.music = this.sound.add("bossfight");
 
     var musicConfig = {
       mute: true,
@@ -94,7 +98,13 @@ class Scene4 extends Phaser.Scene {
       "VIDA: " + vida,
       32
     );
-  
+    this.Labelreputacao = this.add.bitmapText(
+      500,
+      5,
+      "pixelFont",
+      "reputacao: " +this.reputacao, 
+      32
+    );
 
     
     //this.player.body.setSize(this.player.width, this.player.height, true);
@@ -102,9 +112,11 @@ class Scene4 extends Phaser.Scene {
     this.physics.add.collider(this.projectiles, this.not, function(projectiles, not){
       projectiles.destroy();
       not.damage();
+      vd--;
+      
     });
     this.physics.add.collider(this.player, this.projectilesI, function(player, projectilesI){
-      vida--;
+    vida--
       projectilesI.destroy();
     });
 
@@ -115,10 +127,16 @@ class Scene4 extends Phaser.Scene {
 
   }
   alive(){
+    this.lose = this.add.bitmapText( config.width/2-300,config.height/2-100, "pixelFont", "lose!", 500);
+    this.aperte_f5 = this.add.bitmapText( config.width/2-100,config.height/2+250, "pixelFont", "aperte f5", 100);
     this.player.destroy();
   }
   
   update() {
+    if(vd==0 && this.reputacao==10){
+      this.reputacao = this.reputacao+10;
+  this.Labelreputacao.text= "reputacao:" +this.reputacao 
+    }
     if(vida>0){
       this.not.update(this.player);
       this.movePlayermanager();
@@ -220,7 +238,6 @@ class Scene4 extends Phaser.Scene {
   //Instancia skill damakos
   shootBeam() {
     if (this.mana > 0) {
-      console.log("entrou nos tirp")
       if (this.direcao == 1) {
         var beam = new BeamLeft(this);
         this.mana -= 1;
@@ -266,13 +283,28 @@ class Scene4 extends Phaser.Scene {
   updateHudVida() {
     this.scoreLabelVida.text = "VIDA: " + vida;
    if(vida==2){
+     if(this.naoestouraorelha!=1){
+      this.hitDamakos();
+    this.naoestouraorelha=1;
+    }
      this.vidadisplay.play("vida2");
    }
    else if(vida==1){
      this.vidadisplay.play("vida1");
+     if(this.naoestouraorelha!=2){
+      this.hitDamakos();
+      this.naoestouraorelha=2;
+    }
    }
    else if(vida==0){
     this.vidadisplay.play("nada");
+    if(this.naoestouraorelha!=3){
+      this.hitDamakos();
+      this.naoestouraorelha=3;
+    }
   }
+  }
+  hitDamakos(){
+    this.hitSound.play();
   }
 }
