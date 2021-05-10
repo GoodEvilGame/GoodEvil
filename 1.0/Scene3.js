@@ -31,10 +31,10 @@ class Scene3 extends Phaser.Scene {
 
         
         //Instanciando sons e música de fundo
-        /*this.music = this.sound.add("music");
+        this.music = this.sound.add("music");
 
         var musicConfig = {
-            mute: false,
+            mute: true,
             volume: 0.4,
             rate: 0.5,
             detune: 0,
@@ -42,7 +42,7 @@ class Scene3 extends Phaser.Scene {
             loop: true,
             delay: 0
         }
-        this.music.play(musicConfig);*/
+        this.music.play(musicConfig);
 
     }
        conversa(){
