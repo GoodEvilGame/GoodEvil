@@ -47,15 +47,17 @@ class Scene3 extends Phaser.Scene {
     }
        conversa(){
            if(this.player.y>460&&this.player.y<588 && this.player.x>880  && this.player.x<1008){
-           this.conversas=this.conversas+1;
+           this.conversas++;
           
            }
+           this.direcao;
        }
         
 
     update(){
-            this.movePlayerManager();
+            this.movePlayermanager();
             this.falap();
+            
 
     }
 
@@ -131,17 +133,17 @@ class Scene3 extends Phaser.Scene {
         }
     }
 
-    movePlayerManager(){
+    movePlayermanager(){
         this.player.setVelocity(0);
 
         if(this.teclaA.isDown){
 
             gameSettings.playerSpeed = 200;
             this.player.setVelocityX(-gameSettings.playerSpeed);
-            if(posicao!=4){
-               posicao = 4;
+            if(this.posicao!=4){
+               this.posicao = 4;
                this.player.play("player-a-esquerda");
-               direcao = 1;
+               this.direcao = 1;
             }
 
         }
@@ -149,10 +151,10 @@ class Scene3 extends Phaser.Scene {
 
             gameSettings.playerSpeed = 200;
             this.player.setVelocityX(gameSettings.playerSpeed);
-            if(posicao!=3){
-                posicao = 3;
+            if(this.posicao!=3){
+                this.posicao = 3;
                 this.player.play("player-a-direita");
-                direcao = 2;
+                this.direcao = 2;
             }
             
         }
@@ -161,10 +163,10 @@ class Scene3 extends Phaser.Scene {
 
             gameSettings.playerSpeed = 200;
             this.player.setVelocityY(gameSettings.playerSpeed);
-            if(posicao!=2){
-                posicao = 2;
+            if(this.posicao!=2){
+                this.posicao = 2;
                 this.player.play("player-a-baixo");
-                direcao = 3;
+                this.direcao = 3;
             }
 
         }
@@ -172,28 +174,28 @@ class Scene3 extends Phaser.Scene {
 
             gameSettings.playerSpeed = 200;
             this.player.setVelocityY(-gameSettings.playerSpeed);
-            if(posicao!=1){
-                posicao = 1;
+            if(this.posicao!=1){
+                this.posicao = 1;
                 this.player.play("player-a-cima");
-                direcao = 4;
+                this.direcao = 4;
             }
         }
     
          else if(this.teclaW.isUp && this.teclaS.isUp && this.teclaA.isUp && this.teclaD.isUp){
-            if(posicao==4){
+            if(this.posicao==4){
                 this.player.play("player-p-esquerda");
-                posicao = 9;
+                this.posicao = 9;
             }
-            if(posicao==3){
-                posicao = 9;
+            if(this.posicao==3){
+                this.posicao = 9;
                 this.player.play("player-p-direita");
             }
-            if(posicao==2){
-                posicao = 9;
+            if(this.posicao==2){
+                this.posicao = 9;
                 this.player.play("player-p-baixo");
             }
-            if(posicao==1){
-                posicao = 9;
+            if(this.posicao==1){
+                this.posicao = 9;
                 this.player.play("player-p-cima");
             }
          }

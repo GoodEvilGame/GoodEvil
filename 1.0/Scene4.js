@@ -1,8 +1,4 @@
-var mana = 5;
-var tempo = 0;
-var posicao = 0;
-var direcao = 0;
-var alive = true;
+var vida = 3
 class Scene4 extends Phaser.Scene {
   constructor() {
     super("Luta");
@@ -11,6 +7,11 @@ class Scene4 extends Phaser.Scene {
   }
 
   create() {
+    this.direcao;
+    this.posicao;
+    this.tempo = 0;
+    this.mana = 5;
+  
     this.background = this.add.image(0, 0, "background_luta");
     this.background.setOrigin(0, 0);
     this.background.setInteractive();
@@ -21,6 +22,7 @@ class Scene4 extends Phaser.Scene {
       "player"
     );
     this.player.play("player-p-baixo");
+
     this.teclaW = this.input.keyboard.addKey("W");
     this.teclaS = this.input.keyboard.addKey("S");
     this.teclaD = this.input.keyboard.addKey("D");
@@ -50,6 +52,8 @@ class Scene4 extends Phaser.Scene {
     //
 
     this.projectiles = this.add.group();
+    this.projectilesI = this.add.group();
+
 
     var graphics = this.add.graphics();
     graphics.fillStyle(0x000000, 1);
@@ -62,49 +66,69 @@ class Scene4 extends Phaser.Scene {
     graphics.closePath();
     graphics.fillPath();
 
-    this.vida = 100;
-    this.scoreLabelMana = this.add.bitmapText(
+    this.vidadisplay = this.add.sprite(
+      420,
+      15,
+      "vida3"
+    );
+    this.vidadisplay.play("vida3");
+    this.manadisplay = this.add.sprite(
+      195,
+      15,
+      "mana5"
+    );
+    this.manadisplay.play("mana5");
+
+    this.scoreLabelmana = this.add.bitmapText(
       10,
       5,
       "pixelFont",
-      "MANA: " + mana,
+      "mana: " + this.mana,
       32
     );
     this.scoreLabelVida = this.add.bitmapText(
       300,
       5,
       "pixelFont",
-      "VIDA: " + this.vida,
+      "VIDA: " + vida,
       32
     );
+  
 
     
     //this.player.body.setSize(this.player.width, this.player.height, true);
     //this.not.body.setSize(this.not.width, this.not.height, true);
-    this.physics.add.collider(this.projectiles, this.not, function(projectile, not){
-      projectile.destroy();
+    this.physics.add.collider(this.projectiles, this.not, function(projectiles, not){
+      projectiles.destroy();
       not.damage();
     });
-    this.physics.add.collider(this.player, this.projectiles, function(player, projectile){
-      alive = false;
+    this.physics.add.collider(this.player, this.projectilesI, function(player, projectilesI){
+      vida--;
+      projectilesI.destroy();
+    });
+
+    this.physics.add.collider(this.projectiles, this.projectilesI, function(projectiles, projectilesI){
+      projectiles.destroy();
+      projectilesI.destroy();
     });
 
   }
-
   alive(){
     this.player.destroy();
   }
   
   update() {
-    if(alive == true){
+    if(vida>0){
       this.not.update(this.player);
-      this.movePlayerManager();
-      if (mana < 5) {
-        tempo = tempo + 1;
-        if (tempo >= 90) {
-          tempo = 0;
-          mana = mana + 1;
+      this.movePlayermanager();
+      if (this.mana < 5) {
+        this.tempo++;
+        
+        if (this.tempo >= 90) {
+          this.tempo = 0;
+          this.mana++;
           this.updateHud();
+          
         }
       }
 
@@ -118,119 +142,99 @@ class Scene4 extends Phaser.Scene {
         var BeamRight = this.projectiles.getChildren()[i];
         BeamRight.update();
       }
+      
     }
-    else{
+    else if (vida<=0){
       this.alive();
     }
+    this.updateHudVida();
   }
 
-  movePlayerManager() {
+  movePlayermanager() {
     this.player.setVelocity(0);
     
     if (this.teclaA.isDown) {
-      if (
-        this.player.x > 830 &&
-        this.player.y < 580 &&
-        this.player.x < 1340 &&
-        this.player.y < 580
-      ) {
-      } else {
         gameSettings.playerSpeed = 200;
         this.player.setVelocityX(-gameSettings.playerSpeed);
-        if (posicao != 4) {
-          posicao = 4;
+        if (this.posicao != 4) {
+          this.posicao = 4;
           this.player.play("player-a-esquerda");
-          direcao = 1;
+          this.direcao = 1;
         }
       }
-    } else if (this.teclaD.isDown) {
-      if (
-        this.player.x > 800 &&
-        this.player.y < 580 &&
-        this.player.x < 1300 &&
-        this.player.y < 580
-      ) {
-      } else {
+  
+      else if (this.teclaD.isDown) {
         gameSettings.playerSpeed = 200;
         this.player.setVelocityX(gameSettings.playerSpeed);
-        if (posicao != 3) {
-          posicao = 3;
+        if (this.posicao != 3) {
+          this.posicao = 3;
           this.player.play("player-a-direita");
-          direcao = 2;
+          this.direcao = 2;
         }
       }
-    }
 
     if (this.teclaS.isDown) {
-      if (this.player.y > 890) {
-      } else {
         gameSettings.playerSpeed = 200;
         this.player.setVelocityY(gameSettings.playerSpeed);
-        if (posicao != 2) {
-          posicao = 2;
+        if (this.posicao != 2) {
+          this.posicao = 2;
           this.player.play("player-a-baixo");
-          direcao = 3;
+          this.direcao = 3;
         }
       }
-    } else if (this.teclaW.isDown && this.player.y > 500) {
-      if (
-        this.player.x > 830 &&
-        this.player.y < 600 &&
-        this.player.x < 1300 &&
-        this.player.y < 600
-      ) {
-      } else {
+    
+     else if (this.teclaW.isDown && this.player.y > 132) {
         gameSettings.playerSpeed = 200;
         this.player.setVelocityY(-gameSettings.playerSpeed);
-        if (posicao != 1) {
-          posicao = 1;
+        if (this.posicao != 1) {
+          this.posicao = 1;
           this.player.play("player-a-cima");
-          direcao = 4;
+          this.direcao = 4;
         }
       }
-    } else if (
+     else if (
       this.teclaW.isUp &&
       this.teclaS.isUp &&
       this.teclaA.isUp &&
       this.teclaD.isUp
     ) {
-      if (posicao == 4) {
+      if (this.posicao == 4) {
         this.player.play("player-p-esquerda");
-        posicao = 9;
+        this.posicao = 9;
       }
-      if (posicao == 3) {
-        posicao = 9;
+      if (this.posicao == 3) {
+        this.posicao = 9;
         this.player.play("player-p-direita");
       }
-      if (posicao == 2) {
-        posicao = 9;
+      if (this.posicao == 2) {
+        this.posicao = 9;
         this.player.play("player-p-baixo");
       }
-      if (posicao == 1) {
-        posicao = 9;
+      if (this.posicao == 1) {
+        this.posicao = 9;
         this.player.play("player-p-cima");
       }
     }
   }
   //Instancia skill damakos
   shootBeam() {
-    if (mana > 0) {
+    if (this.mana > 0) {
       console.log("entrou nos tirp")
-      if (direcao == 1) {
+      if (this.direcao == 1) {
         var beam = new BeamLeft(this);
-        mana -= 1;
+        this.mana -= 1;
         this.shootSound.play();
-      } else if (direcao == 2) {
+      } else if (this.direcao == 2) {
         var beam = new BeamRight(this);
-        mana -= 1;
+        this.mana -= 1;
         this.shootSound.play();
-      } else if (direcao == 3) {
+      } else if (this.direcao == 3) {
         var beam = new BeamDown(this);
-        mana -= 1;
+        this.mana -= 1;
         this.shootSound.play();
-      } else if (direcao == 4) {
+      } else if (this.direcao == 4) {
         var beam = new BeamUp(this);
-        mana -= 1;
+        this.mana -= 1;
         this.shootSound.play();
       }
       this.updateHud();
@@ -238,6 +242,36 @@ class Scene4 extends Phaser.Scene {
   }
 
   updateHud() {
-    this.scoreLabelMana.text = "MANA: " + mana;
+    this.scoreLabelmana.text = "mana: " + this.mana;
+    if(this.mana==5){
+      this.manadisplay.play("mana5");
+    }
+    else if(this.mana==4){
+      this.manadisplay.play("mana4");
+    }
+    else if(this.mana==3){
+      this.manadisplay.play("mana3");
+    }
+    else if(this.mana==2){
+      this.manadisplay.play("mana2");
+    }
+    else if(this.mana==1){
+      this.manadisplay.play("mana1");
+    }
+    else if(this.mana==0){
+      this.manadisplay.play("nada");
+    }
+  }
+  updateHudVida() {
+    this.scoreLabelVida.text = "VIDA: " + vida;
+   if(vida==2){
+     this.vidadisplay.play("vida2");
+   }
+   else if(vida==1){
+     this.vidadisplay.play("vida1");
+   }
+   else if(vida==0){
+    this.vidadisplay.play("nada");
+  }
   }
 }

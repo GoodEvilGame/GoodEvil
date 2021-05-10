@@ -4,10 +4,10 @@ class Inimigo extends Phaser.GameObjects.Sprite{
         var y = config.height/2 + 200;
         super(scene, x, y, "inimigo");
         scene.add.existing(this);
-        this.playerAlive = true;
         this.speed;
         this.direction = 1;
         this.vida = 2;
+        this.tempo2 = 0;
         this.manaNot = 5;
         this.beam;  
         scene.physics.world.enableBody(this);
@@ -104,11 +104,19 @@ class Inimigo extends Phaser.GameObjects.Sprite{
     }
 
     update(player){
-        if(this.vida > 0 && this.playerAlive == true){
+        if(this.vida > 0 ){
             this.findPlayer(player);
             this.animNot();
             this.body.setVelocityX(this.speedX);
             this.body.setVelocityY(this.speedY);
+            if (this.manaNot < 5) {
+                this.tempo2++;
+                
+                if (this.tempo2 >= 90) {
+                  this.tempo2 = 0;
+                  this.manaNot++;
+                }
+            }  
         }
     }
 
@@ -121,10 +129,10 @@ class BeamNot extends Phaser.GameObjects.Sprite{
         var y = not.y;
         super(scene, x, y, "beamNot");
         scene.add.existing(this);
-        this.play("beam_esq");
+        this.play("beam_esq_inimigo");
         scene.physics.world.enableBody(this);
         this.body.velocity.x = -900;
-        scene.projectiles.add(this);
+        scene.projectilesI.add(this);
         this.setScale(3);
       }
     update(){   

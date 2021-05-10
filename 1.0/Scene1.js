@@ -60,6 +60,10 @@ class Scene1 extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32
         });
+        this.load.spritesheet("beam_esq_inimigo", "assets/images/not/ataque_esq.png",{ 
+            frameWidth: 32,
+            frameHeight: 32
+        });
         this.load.spritesheet("beam_dir", "assets/images/damakos/ataque_dir.png",{ 
             frameWidth: 32,
             frameHeight: 32
@@ -87,6 +91,43 @@ class Scene1 extends Phaser.Scene {
         this.load.spritesheet("not-a-dir", "assets/images/not/Not_direita.png", {
             frameWidth: 14,
             frameHeight: 31
+        });
+        this.load.spritesheet("nada", "assets/images/cenario/nada.png",{ 
+            frameWidth: 1,
+            frameHeight: 1
+        });
+
+        this.load.spritesheet("mana1", "assets/images/cenario/mana.png",{ 
+            frameWidth: 16,
+            frameHeight: 16
+        });
+        this.load.spritesheet("mana2", "assets/images/cenario/mana.png",{ 
+            frameWidth: 32,
+            frameHeight: 16
+        });
+        this.load.spritesheet("mana3", "assets/images/cenario/mana.png",{ 
+            frameWidth: 48,
+            frameHeight: 16
+        });
+        this.load.spritesheet("mana4", "assets/images/cenario/mana.png",{ 
+            frameWidth: 64,
+            frameHeight: 16
+        });
+        this.load.spritesheet("mana5", "assets/images/cenario/mana.png",{ 
+            frameWidth: 80,
+            frameHeight: 16
+        });
+        this.load.spritesheet("vida1", "assets/images/cenario/vida.png",{ 
+            frameWidth: 16,
+            frameHeight: 16
+        });
+        this.load.spritesheet("vida2", "assets/images/cenario/vida.png",{ 
+            frameWidth: 32,
+            frameHeight: 16
+        });
+        this.load.spritesheet("vida3", "assets/images/cenario/vida.png",{ 
+            frameWidth: 48,
+            frameHeight: 16
         });
 
         //Fonte de letras utilizada
@@ -174,6 +215,12 @@ class Scene1 extends Phaser.Scene {
         repeat: -1
     })
     this.anims.create({
+        key: "beam_esq_inimigo",
+        frames: this.anims.generateFrameNumbers("beam_esq_inimigo"),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
         key: "beam_dir",
         frames: this.anims.generateFrameNumbers("beam_dir"),
         frameRate: 5,
@@ -205,6 +252,59 @@ class Scene1 extends Phaser.Scene {
         frameRate: 5,
         repeat: -1
     })
-
+    this.anims.create({
+        key: "nada",
+        frames: this.anims.generateFrameNumbers("nada", {start: 0, end:0}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "mana1",
+        frames: this.anims.generateFrameNumbers("mana1", {start: 0, end:0}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "mana2",
+        frames: this.anims.generateFrameNumbers("mana2", {start: 0, end:0}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "mana3",
+        frames: this.anims.generateFrameNumbers("mana3", {start: 0, end:0}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "mana4",
+        frames: this.anims.generateFrameNumbers("mana4", {start: 0, end:0}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "mana5",
+        frames: this.anims.generateFrameNumbers("mana5", {start: 0, end:0}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "vida1",
+        frames: this.anims.generateFrameNumbers("vida1", {start: 0, end:0}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "vida2",
+        frames: this.anims.generateFrameNumbers("vida2", {start: 0, end:0}),
+        frameRate: 5,
+        repeat: -1
+    })
+    this.anims.create({
+        key: "vida3",
+        frames: this.anims.generateFrameNumbers("vida3", {start: 0, end:0}),
+        frameRate: 5,
+        repeat: -1
+    })
    }
 }
