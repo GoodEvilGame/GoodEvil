@@ -37,7 +37,8 @@ class Scene4 extends Phaser.Scene {
     this.not = new Inimigo(this);
     //Instanciando sons e música de fundo
     this.shootSound = this.sound.add("shoot");
-    this.music = this.sound.add("music");
+    this.hitSound = this.sound.add("hit");
+    /*this.music = this.sound.add("music");
 
     var musicConfig = {
       mute: false,
@@ -48,7 +49,7 @@ class Scene4 extends Phaser.Scene {
       loop: true,
       delay: 0,
     };
-    this.music.play(musicConfig);
+    this.music.play(musicConfig);*/
     //
 
     this.projectiles = this.add.group();
