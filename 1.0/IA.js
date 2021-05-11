@@ -13,7 +13,6 @@ class Inimigo extends Phaser.GameObjects.Sprite{
         scene.physics.world.enableBody(this);
         this.body.setCollideWorldBounds(true);
         this.setScale(5);
-
     }
 
     
@@ -87,13 +86,18 @@ class Inimigo extends Phaser.GameObjects.Sprite{
         }
     }
 
-    damage(){
+    
+
+    damage(){        
         this.vida -= 1;
         this.scene.hitDamakos();
+       
         if(this.vida == 0){
             this.play("not_morrendo");
             this.win = this.scene.add.bitmapText( config.width/2-300,config.height/2-100, "pixelFont", "win!", 500);
             this.aperte_f5 = this.scene.add.bitmapText( config.width/2-100,config.height/2+250, "pixelFont", "aperte f5", 100);
+            this.scene.victoryS();
+            this.scene.sound.stopByKey('bossfight')
         }
     }
 

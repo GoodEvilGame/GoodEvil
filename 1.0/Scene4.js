@@ -42,18 +42,23 @@ class Scene4 extends Phaser.Scene {
     //Instanciando sons e música de fundo
     this.shootSound = this.sound.add("shoot");
     this.hitSound = this.sound.add("hit");
-    this.music = this.sound.add("bossfight");
+    this.bossSong = this.sound.add("bossfight");
+    this.victorySong = this.sound.add("victory");
+    this.loseSong = this.sound.add("lose");
 
-    var musicConfig = {
-      mute: true,
-      volume: 0.4,
-      rate: 0.5,
+
+    var bossConfig = {
+      mute: false,
+      volume: 0.3,
+      rate: 1,
       detune: 0,
       seek: 0,
       loop: true,
       delay: 0,
     };
-    this.music.play(musicConfig);
+    this.sound.stopByKey('arena');
+    this.bossSong.play(bossConfig)
+    
     //
 
     this.projectiles = this.add.group();
@@ -301,10 +306,40 @@ class Scene4 extends Phaser.Scene {
     if(this.naoestouraorelha!=3){
       this.hitDamakos();
       this.naoestouraorelha=3;
+      this.loseS();
+      this.sound.stopByKey('bossfight');
     }
   }
   }
   hitDamakos(){
     this.hitSound.play();
+  }
+
+  victoryS(){
+   
+    var victoryConfig = {
+      mute: false,
+      volume: 0.2,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: false,
+      delay: 0,
+    };
+    this.victorySong.play(victoryConfig);
+  }
+
+  loseS(){
+   
+    var loseConfig = {
+      mute: false,
+      volume: 0.4,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: false,
+      delay: 0,
+    };
+    this.loseSong.play(loseConfig);
   }
 }
