@@ -28,6 +28,11 @@ class Scene1 extends Phaser.Scene {
             frameWidth: 30,
             frameHeight: 32
         });
+
+        this.load.spritesheet("damakos_morrendo", "assets/images/damakos/damakos_morrendo.png",{
+            frameWidth: 32,
+            frameHeight: 32
+        });
         this.load.spritesheet("damakos_falando", "assets/images/damakos/damakos_falando.png",{ 
             frameWidth: 30,
             frameHeight: 32
@@ -348,6 +353,12 @@ class Scene1 extends Phaser.Scene {
         key: "not_morrendo",
         frames: this.anims.generateFrameNumbers("not_morrendo", {start: 0, end:2}),
         frameRate: 1,
+        repeat: 0
+    })
+    this.anims.create({
+        key:"damakos_morrendo_anim",
+        frames: this.anims.generateFrameNames("damakos_morrendo"),
+        frameRate: 5,
         repeat: 0
     })
 

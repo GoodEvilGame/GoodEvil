@@ -134,7 +134,6 @@ class Scene4 extends Phaser.Scene {
   alive(){
     this.lose = this.add.bitmapText( config.width/2-300,config.height/2-100, "pixelFont", "lose!", 500);
     this.aperte_f5 = this.add.bitmapText( config.width/2-100,config.height/2+250, "pixelFont", "aperte f5", 100);
-    this.player.destroy();
   }
   
   update() {
@@ -302,9 +301,10 @@ class Scene4 extends Phaser.Scene {
     }
    }
    else if(vida==0){
-    this.vidadisplay.play("nada");
+    this.vidadisplay.play("nada")
     if(this.naoestouraorelha!=3){
       this.hitDamakos();
+      this.player.play("damakos_morrendo_anim");
       this.naoestouraorelha=3;
       this.loseS();
       this.sound.stopByKey('bossfight');
